@@ -1,5 +1,6 @@
 work in progress :)
-1. make account
+dont do these steps, they arent correct, we are working on it :)
+1. make account in pythonanywhere
 2. confirm email
 3. new bash console
 4. make a app with /home/workboxtest/Workbox/src/api.py
