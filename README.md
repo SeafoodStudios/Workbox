@@ -9,7 +9,7 @@ Workbox is a simple system to simplify the work for teachers and students alike.
 4. Enter the path "/home/workboxtest/Workbox/src/api.py" to be added to the Flask project.
 5. Create a new Bash console and enter these commands:
 ```
-rm -rf /home/workboxtest/Workbox/
+rm -rf /home/YOUR_USERNAME/Workbox/
 git clone https://github.com/SeafoodStudios/Workbox
 pip3 install -q -U google-genai
 ```
