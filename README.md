@@ -14,6 +14,6 @@ curl -X POST https://**YOUR_USERNAME**.pythonanywhere.com/edit_settings/ \
 -H "Content-Type: application/json" \
 -d '{
   "password": "**YOUR_API_KEY**",
-  "information": "# This is configuration for your server, edit this using the REST API.\nsetting_your_email = \"***your_email@example.com***\"\nsetting_your_password = \"***your_google_app_password***\"\nsetting_your_gemini_api_key = \"**your_gemini_api_key**\"\nsetting_student_emails = [\"**student_email@example.com**\"]\nsetting_parent_emails = [\"**parent_email@example.com**\"]\nprojectname = \"**workbox**\"\n"
+  "information": "# This is configuration for your server, edit this using the REST API.\nsetting_your_email = \"**your_email@example.com**\"\nsetting_your_password = \"**your_google_app_password**\"\nsetting_your_gemini_api_key = \"**your_gemini_api_key**\"\nsetting_student_emails = [\"**student_email@example.com**\"]\nsetting_parent_emails = [\"**parent_email@example.com**\"]\nprojectname = \"**workbox**\"\n'
 }'
 ```
