@@ -1,13 +1,13 @@
 # Workbox
 Workbox is a simple system to simplify the work for teachers and students alike.
-> [!CAUTION]  
-> This is still a work in progress, so be careful.
+> [!NOTE]  
+> Make sure to fill in the necessary information.
 ## Quick Setup
 1. Make a [PythonAnywhere](https://www.pythonanywhere.com/pricing/) account.
 2. Confirm your email address.
 3. Open the web tab, add a new web app, pick the "Flask" framework with "Python 3.13".
-4. Enter the path "/home/workboxtest/Workbox/src/api.py" to be added to the Flask project.
-5. Create a new Bash console and enter these commands (fill in your username):
+4. Enter the path "/home/YOUR_USERNAME/Workbox/src/api.py" to be added to the Flask project.
+5. Create a new Bash console and enter these commands:
 ```
 rm -rf /home/YOUR_USERNAME/Workbox/
 git clone https://github.com/SeafoodStudios/Workbox
