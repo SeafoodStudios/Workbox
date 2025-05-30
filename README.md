@@ -17,3 +17,5 @@ curl -X POST https://YOUR_USERNAME.pythonanywhere.com/edit_settings/ \
   "information": "# This is configuration for your server, edit this using the REST API.\nsetting_your_email = \"YOUR_EMAIL@EXAMPLE.COM\"\nsetting_your_password = \"YOUR_GOOGLE_APP_PASSWORD\"\nsetting_your_gemini_api_key = \"YOUR_GEMINI_API_KEY\"\nsetting_student_emails = [\"STUDENT_EMAIL@EXAMPLE.COM\"]\nsetting_parent_emails = [\"PARENT_EMAIL@EXAMPLE.COM\"]\nprojectname = \"WORKBOX\"\n'
 }'
 ```
+7. Go to your web tab and reload the code.
+8. Go to your site, and it should be up!
