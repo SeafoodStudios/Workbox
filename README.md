@@ -1,6 +1,7 @@
 # Workbox
 Workbox is a simple system to simplify the work for teachers and students alike.
-> **⚠️ Caution:** This is still a work in progress, so be careful.
+> [!CAUTION]  
+> This is still a work in progress, so be careful.
 ## Quick Setup
 1. Make a [PythonAnywhere](https://www.pythonanywhere.com/pricing/) account.
 2. Open the web tab, add a new web app, pick the "Flask" framework with "Python 3.13".
