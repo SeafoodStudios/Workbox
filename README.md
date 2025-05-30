@@ -15,8 +15,9 @@ pip3 install -q -U google-genai
 ```
 5. Go to your "Account" tab, select the "API Token" button and create a new API key.
 6. Turn on your Google 2-Step Verification, and make an [app password](https://myaccount.google.com/apppasswords).
-7. Go to your web tab and reload the code.
-8. Fill in the API key and the information required into this code and run it in a Zsh/Bash terminal.
+7. Make a [Google Gemini AI API Key](https://aistudio.google.com/apikey).
+8. Go to your web tab and reload the code.
+9. Fill in the API key and the information required into this code and run it in a Zsh/Bash terminal.
 ```
 curl -X POST https://YOUR_USERNAME.pythonanywhere.com/edit_settings/ \
 -H "Content-Type: application/json" \
