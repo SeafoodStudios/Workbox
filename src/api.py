@@ -3,6 +3,7 @@ from email.message import EmailMessage
 from flask import Flask, request, jsonify
 import settings
 from google import genai
+import requests
 
 app = Flask(__name__)
 
@@ -57,3 +58,42 @@ def submit():
             return jsonify({"error": "Missing required fields"}), 400
     else:
         return jsonify({"error": "Email is not in students list."}), 400
+
+@app.route('/config/', methods=['POST'])
+def config():
+    data = request.get_json()
+    type = data.get('type')
+    info = data.get('info')
+    password = data.get('password')
+
+    username = str(settings.projectname)
+
+    response = requests.get(
+        'https://www.pythonanywhere.com/api/v0/user/{username}/cpu/'.format(
+            username=username
+        ),
+        headers={'Authorization': 'Token {token}'.format(token=password)}
+    )
+
+    if response.status_code == 200:
+        file = open("settings.py", "r")
+        lines = file.readlines()
+        file.close()
+        if type == "your_email":
+            lines[1] = "setting_your_email = " + repr(info) + "\n"
+        elif type == "your_password":
+            lines[2] = "setting_your_password = " + repr(info) + "\n"
+        elif type == "your_gemini_api_key":
+            lines[3] = "setting_your_gemini_api_key = " + repr(info) + "\n"
+        elif type == "student_emails":
+            lines[4] = "setting_student_emails = " + repr(info) + "\n"
+        elif type == "parent_emails":
+            lines[5] = "setting_parent_emails = " + repr(info) + "\n"
+        else:
+            return jsonify({"error": "Invalid type."}), 400
+        file = open("settings.py", "w")
+        file.writelines(lines)
+        file.close()
+        return jsonify({"success": "Changed settings."}), 200
+    else:
+        return jsonify({"error": "Invalid password."}), 400
