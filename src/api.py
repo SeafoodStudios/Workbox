@@ -7,6 +7,10 @@ import requests
 
 app = Flask(__name__)
 
+@app.route('/', methods=['GET'])
+def index():
+    return "This is an example of the REST API for Workbox."
+
 @app.route('/submit/', methods=['POST'])
 def submit():
     data = request.get_json()
