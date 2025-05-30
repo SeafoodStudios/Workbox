@@ -59,11 +59,31 @@ def submit():
     else:
         return jsonify({"error": "Email is not in students list."}), 400
 
-@app.route('/config/', methods=['POST'])
-def config():
+@app.route('/edit_settings/', methods=['POST'])
+def edit_settings():
     data = request.get_json()
-    type = data.get('type')
-    info = data.get('info')
+    password = data.get('password')
+    information = data.get('information')
+
+    username = str(settings.projectname)
+
+    response = requests.get(
+        'https://www.pythonanywhere.com/api/v0/user/{username}/cpu/'.format(
+            username=username
+        ),
+        headers={'Authorization': 'Token {token}'.format(token=password)}
+    )
+
+    if response.status_code == 200:
+        file = open("settings.py", "w")
+        file.write(str(information))
+        file.close()
+        return jsonify({"success": "Changed settings."}), 200
+    else:
+        return jsonify({"error": "Invalid password."}), 400
+@app.route('/read_settings/', methods=['POST'])
+def read_settings():
+    data = request.get_json()
     password = data.get('password')
 
     username = str(settings.projectname)
@@ -77,23 +97,35 @@ def config():
 
     if response.status_code == 200:
         file = open("settings.py", "r")
-        lines = file.readlines()
+        contents = str(file.read())
         file.close()
-        if type == "your_email":
-            lines[1] = "setting_your_email = " + repr(info) + "\n"
-        elif type == "your_password":
-            lines[2] = "setting_your_password = " + repr(info) + "\n"
-        elif type == "your_gemini_api_key":
-            lines[3] = "setting_your_gemini_api_key = " + repr(info) + "\n"
-        elif type == "student_emails":
-            lines[4] = "setting_student_emails = " + repr(info) + "\n"
-        elif type == "parent_emails":
-            lines[5] = "setting_parent_emails = " + repr(info) + "\n"
-        else:
-            return jsonify({"error": "Invalid type."}), 400
-        file = open("settings.py", "w")
-        file.writelines(lines)
-        file.close()
-        return jsonify({"success": "Changed settings."}), 200
+        return jsonify({"success": "Contents: \n" + contents}), 200
     else:
         return jsonify({"error": "Invalid password."}), 400
+@app.route('/assign_work/', methods=['POST'])
+def assign_work():
+    data = request.get_json()
+    receiver = data.get('receiver')
+    password = data.get('password')
+    message = data.get('message')
+    subject = data.get('subject')
+    body = data.get('body')
+    try:
+        with smtplib.SMTP('smtp.gmail.com', 587) as server:
+            server.starttls()
+            server.login(settings.setting_your_email, settings.setting_your_password)
+            msg = EmailMessage()
+            msg['Subject'] = "Workbox Homework: " + subject
+            msg['From'] = settings.setting_your_email
+            msg['To'] = receiver
+            msg.set_content(body)
+            server.send_message(msg)
+
+            del msg['To']
+
+            msg['To'] = settings.setting_parent_emails[settings.setting_student_emails.index(receiver)]
+            server.send_message(msg)
+            return jsonify({"success": "Assignment sent successfully!"}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
