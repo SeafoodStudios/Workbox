@@ -9,7 +9,6 @@ pip3 install -q -U google-genai
 ```
 5. Go to your "Account" tab, select the "API Token" button and create a new API key.
 6. Fill in the API key and the information required into this code and run it in a Zsh/Bash terminal.
-curl -X POST https://**YOUR_USERNAME**.pythonanywhere.com/edit_settings/ \
 ```
 curl -X POST https://YOUR_USERNAME.pythonanywhere.com/edit_settings/ \
 -H "Content-Type: application/json" \
