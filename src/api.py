@@ -19,7 +19,7 @@ def submit():
         if all([sender, receiver, password, subject, body]):
             client = genai.Client(api_key=str(settings.setting_your_gemini_api_key))
             response = client.models.generate_content(
-                model="gemini-2.0-flash", contents="Give a short grade summary (with a letter grade, and if you think it is made by AI, say that) for this Python homework (do NOT add comments): " + str(body)
+                model="gemini-2.0-flash", contents="Give a short grade summary (with a letter grade, and if you think it is made by AI, say that) for this homework (do NOT add comments): " + str(body)
             )
             grade = str(response.text)
             msg = EmailMessage()
@@ -29,7 +29,7 @@ def submit():
             html_content = f"""
             <html>
               <body>
-                <h2>Here is the completed Python Homework:</h2>
+                <h2>Here is the completed homework:</h2>
                 <p>{body}</p>
                 <h2>Here is a grade summary: </h2>
                 <p>{grade}</p>
